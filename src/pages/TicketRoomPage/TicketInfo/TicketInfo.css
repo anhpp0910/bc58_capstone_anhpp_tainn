@@ -1,0 +1,17 @@
+.ticketInfo {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.ticketInfo_item {
+  margin: 35px 10px;
+  position: relative;
+}
+
+.ticketInfo_item.line::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: rgb(224, 219, 219);
+  position: absolute;
+  top: 40px;
+}
