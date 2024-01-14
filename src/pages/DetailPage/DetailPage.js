@@ -17,14 +17,12 @@ export default function DetailPage() {
 
   return (
     <>
-      <div className="container flex space-x-16 justify-start">
-        <div className="w-96 max-h-80">
-          <img
-            className="object-cover w-full h-full"
-            src={detail.hinhAnh}
-            alt={detail.tenPhim}
-          />
-        </div>
+      <div className="container space-x-16 flex justify-start h-96">
+        <img
+          className="w-1/4 object-cover"
+          src={detail.hinhAnh}
+          alt={detail.tenPhim}
+        />
         <div className="space-y-5">
           <h1 className="text-4xl font-bold text-purple-700">
             {detail.tenPhim}

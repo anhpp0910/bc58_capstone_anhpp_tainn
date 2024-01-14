@@ -7,7 +7,6 @@ import TicketInfo from "./TicketInfo/TicketInfo";
 export default function TicketRoomPage() {
   const [danhSachGhe, setDanhSachGhe] = useState([]);
   const [thongTinPhim, setThongTinPhim] = useState([]);
-
   let { maLichChieu } = useParams();
 
   useEffect(() => {
@@ -22,8 +21,8 @@ export default function TicketRoomPage() {
 
   return (
     <div className="grid grid-cols-5">
-      <Screen danhSachGhe={danhSachGhe} thongTinPhim={thongTinPhim} />
-      <TicketInfo danhSachGhe={danhSachGhe} thongTinPhim={thongTinPhim} />
+      <Screen danhSachGhe={danhSachGhe} />
+      <TicketInfo thongTinPhim={thongTinPhim} />
     </div>
   );
 }

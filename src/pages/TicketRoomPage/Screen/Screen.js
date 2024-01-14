@@ -1,23 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Screen.css";
 import { useDispatch } from "react-redux";
 import {
   addToDsGheBanChon,
-  addDanhSachVe,
-  getThongTinMaLichChieu,
-  clearDsGhe,
+  clearDsGheBanChon,
 } from "../../../redux/ticketSlice";
 
-export default function Screen({ danhSachGhe, thongTinPhim }) {
-  console.log(danhSachGhe);
-  console.log(thongTinPhim);
+export default function Screen({ danhSachGhe }) {
   // Đẩy data lên redux => useDispatch
   // Handle khi click chọn ghế
   let dispatch = useDispatch();
-  let handleClickOnSeat = (ghe) => {
+  const handleClickOnSeat = (ghe) => {
     dispatch(addToDsGheBanChon(ghe));
-    dispatch(getThongTinMaLichChieu(thongTinPhim.maLichChieu));
-    dispatch(addDanhSachVe({ maGhe: ghe.maGhe, giaVe: ghe.giaVe }));
   };
 
   const renderGhe = () => {
@@ -26,7 +20,7 @@ export default function Screen({ danhSachGhe, thongTinPhim }) {
       let loaiGhe = ghe.loaiGhe === "Thuong" ? "gheThuong" : "gheVip";
       return (
         <button
-          key={ghe.tenGhe}
+          key={ghe.maGhe}
           className={"text-white ghe " + loaiGhe + " " + daDat}
           onClick={(e) => {
             e.target.classList.toggle("gheBanChon");
@@ -40,7 +34,7 @@ export default function Screen({ danhSachGhe, thongTinPhim }) {
   };
 
   useEffect(() => {
-    dispatch(clearDsGhe());
+    dispatch(clearDsGheBanChon());
   }, []);
 
   return (
@@ -48,9 +42,7 @@ export default function Screen({ danhSachGhe, thongTinPhim }) {
       <h3 className="manHinh py-12 text-center text-white text-md font-medium">
         MÀN HÌNH
       </h3>
-
       <div className="seat_map">{renderGhe()}</div>
-
       <div className="seat_guide py-14">
         <div className="flex justify-around items-center">
           <div className="flex items-center">

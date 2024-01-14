@@ -2,10 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dsGheBanChon: [],
-  thongTinDatVe: {
-    maLichChieu: 0,
-    danhSachVe: [],
-  },
 };
 
 const ticketSlice = createSlice({
@@ -22,24 +18,12 @@ const ticketSlice = createSlice({
         // Nếu ghế đang được chọn thì remove khỏi ds ghế bạn chọn
       } else state.dsGheBanChon.splice(index, 1);
     },
-    clearDsGhe: (state, action) => {
+    clearDsGheBanChon: (state) => {
       state.dsGheBanChon = [];
-    },
-    getThongTinMaLichChieu: (state, action) => {
-      state.thongTinDatVe.maLichChieu = action.payload;
-    },
-    addDanhSachVe: (state, action) => {
-      let danhSachVeClone = state.thongTinDatVe.danhSachVe;
-      state.thongTinDatVe.danhSachVe = [...danhSachVeClone, action.payload];
     },
   },
 });
 
-export const {
-  getThongTinMaLichChieu,
-  addToDsGheBanChon,
-  addDanhSachVe,
-  clearDsGhe,
-} = ticketSlice.actions;
+export const { addToDsGheBanChon, clearDsGheBanChon } = ticketSlice.actions;
 
 export default ticketSlice.reducer;

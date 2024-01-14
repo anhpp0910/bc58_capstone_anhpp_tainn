@@ -9,7 +9,6 @@ export default function Layout() {
       <Header />
       <Outlet />
       {/* Outlet ~ route con của route cha */}
-
       <Footer />
     </div>
   );

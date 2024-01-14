@@ -1,12 +1,10 @@
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { https } from "../../../service/api";
 import "./TicketInfo.css";
 
 export default function TicketInfo({ thongTinPhim }) {
   let ngayChieuGioChieu = `${thongTinPhim.ngayChieu} ${thongTinPhim.gioChieu}`;
-
   let { dsGheBanChon } = useSelector((state) => state.ticketSlice);
 
   // Render ds ghế bạn chọn
@@ -22,20 +20,6 @@ export default function TicketInfo({ thongTinPhim }) {
 
   // Tính tổng tiền
   const tongTien = dsGheBanChon.reduce((total, cur) => total + cur.giaVe, 0);
-
-  let { thongTinDatVe } = useSelector((state) => state.ticketSlice);
-  console.log("TTDV", thongTinDatVe);
-  // Nhấn đặt vé
-  const handleDatVe = () => {
-    https
-      .post("/api/QuanLyDatVe/DatVe", thongTinDatVe)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <div className="ticketInfo grid grid-cols-subgrid col-span-2 mx-5 p-5 text-md font-medium">
@@ -72,10 +56,7 @@ export default function TicketInfo({ thongTinPhim }) {
           <span className="text-purple-700">{tongTien.toLocaleString()}đ</span>
         </div>
         <div className="m-auto">
-          <button
-            className=" text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-48 py-3 mt-5"
-            onClick={handleDatVe}
-          >
+          <button className=" text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-48 py-3 mt-5">
             ĐẶT VÉ
           </button>
         </div>
